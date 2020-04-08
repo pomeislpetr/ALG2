@@ -14,15 +14,11 @@ public class Square extends Rectangle {
     private double b;
     private double area;
 
-    private Square(double a){
+    public Square (double a){
+        super(a,a);
         this.a = a;
-        this.b = a;
-        this.area = computeArea();
     }
     
-        public static Square getSquare(double a){
-            return new Square(a);
-        }
 
     @Override
     public double getA() {

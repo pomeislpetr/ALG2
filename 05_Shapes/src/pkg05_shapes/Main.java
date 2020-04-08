@@ -18,7 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         Circle c1 = Circle.getInstanceD(8);
-        Rectangle r1 = Rectangle.getRectangle(2, 3);
+        Rectangle r1 = new Rectangle(2, 3);
         Circle c2 = Circle.getInstanceR(2.6);
         
         System.out.println("1. varianta");

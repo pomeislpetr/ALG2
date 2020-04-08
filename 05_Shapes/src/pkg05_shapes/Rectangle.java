@@ -15,15 +15,12 @@ public class Rectangle extends Shape{ //Rectangle je typove kompatibilni s Shape
     private double b;
     private double area;
   
-    private Rectangle(double a, double b) {
+    public Rectangle(double a, double b) {
         this.a = a;
         this.b = b;
         this.area = area();
     }
     
-    public static Rectangle getRectangle(double a, double b){
-        return new Rectangle(a, b);
-    }
 
     public double getA() {
         return a;

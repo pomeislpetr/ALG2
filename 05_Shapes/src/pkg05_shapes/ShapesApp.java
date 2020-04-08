@@ -89,7 +89,7 @@ public class ShapesApp {
     private static void addRectangle() {
         System.out.println("");
         System.out.print("Zadej strany a, b obdelnika:");
-        shapes.add(Rectangle.getRectangle(sc.nextDouble(), sc.nextDouble()));
+        shapes.add(new Rectangle(sc.nextDouble(), sc.nextDouble()));
     }
 
     private static void addCircle() {
