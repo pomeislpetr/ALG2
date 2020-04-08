@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg05_shapes;
+package interfacevariant;
+
+import pkg05_shapes.*;
 
 /**
  *  Nemenny (imutable) objekt
  * @author Pomeisl Petr
  */
-public class Rectangle extends Shape{ //Rectangle je typove kompatibilni s Shape, Rectangle Is A Shape
+public class Rectangle implements ShapeInterface{ //Rectangle je typove kompatibilni s ShapeInterface
     //data
     private double a;
     private double b;

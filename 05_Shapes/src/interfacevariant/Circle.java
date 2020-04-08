@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg05_shapes;
+package interfacevariant;
+
+import pkg05_shapes.*;
 
 /**
  *
  * @author Pomeisl Petr
  */
-public class Circle extends Shape{ //Circle je typove kompatibilni s Shape, Circle Is A Shape
+public class Circle implements ShapeInterface{ //Circle je typove kompatibilni s ShapeInterface, implementuje metody definovane v ShapeInterface
     //data
         private double r;
     
