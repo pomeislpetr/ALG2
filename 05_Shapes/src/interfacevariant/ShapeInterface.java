@@ -5,8 +5,6 @@
  */
 package interfacevariant;
 
-import pkg05_shapes.*;
-
 /**
  *
  * @author Pomeisl Petr
@@ -20,5 +18,6 @@ public interface ShapeInterface { //nevytvari object typu ShapeInterface, musi b
     
     default String getShapeName(){
         return this.getClass().getSimpleName();
-    }   
+    }
+    
 }

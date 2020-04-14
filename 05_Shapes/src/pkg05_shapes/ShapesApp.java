@@ -83,7 +83,9 @@ public class ShapesApp {
 
     //sqare Is A Rectangle
     private static void addSquare() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("");
+        System.out.println("Zadej stranu a ctverce:");
+        shapes.add(new Square(sc.nextDouble()));
     }
     
     private static void addRectangle() {
@@ -101,7 +103,8 @@ public class ShapesApp {
     //typ, rozmery, obsah o vsech
     private static void printObjects() {
         for (Shape shape : shapes) {
-            System.out.println(shape);
+            System.out.println("");
+            System.out.println(shape.toString());
         }
     }
 

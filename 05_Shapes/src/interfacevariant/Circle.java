@@ -5,8 +5,6 @@
  */
 package interfacevariant;
 
-import pkg05_shapes.*;
-
 /**
  *
  * @author Pomeisl Petr

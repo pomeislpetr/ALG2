@@ -86,7 +86,9 @@ public class ShapesApp {
 
     //sqare Is A Rectangle
     private static void addSquare() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("");
+        System.out.println("Zadej stranu a ctverce:");
+        shapes.add(new Square(sc.nextDouble()));
     }
     
     private static void addRectangle() {
@@ -104,7 +106,8 @@ public class ShapesApp {
     //typ, rozmery, obsah o vsech
     private static void printObjects() {
         for (ShapeInterface shape : shapes) {
-            System.out.println(shape);
+            System.out.println("");
+            System.out.println(shape.toString());
         }
     }
 
@@ -138,8 +141,31 @@ public class ShapesApp {
     }
 
     //TODO - třídit podle plochy
-    private static void sortObjects() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    private static void sortObjects() {
+//        boolean condition = true;
+//        int index = 0;
+//        while (condition){
+//            condition = false;
+//            index = 0;
+//            for (ShapeInterface shape : shapes) {
+//                if (shape.computeArea() < )
+//            }
+//        }
     
+     private static void sortObjects() {
+        boolean condition = true;
+        int index = 0;
+        while (condition){
+            condition = false;
+            index = 0;
+            for (int i = 0; i < (shapes.size() - 1); i++) {
+                if (shapes.get(i).computeArea() < shapes.get(i + 1).computeArea()){
+                    ShapeInterface temp = shapes.get(i);
+                    shapes.get(i) =shapes.get(i + 1);
+                    shapes.get(i + 1) = temp;
+                    condition = true;
+                }
+            }
+        }
+    }
 }

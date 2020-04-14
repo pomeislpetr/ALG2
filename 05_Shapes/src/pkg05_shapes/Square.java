@@ -11,7 +11,6 @@ package pkg05_shapes;
  */
 public class Square extends Rectangle {
     private double a;
-    private double b;
     private double area;
 
     public Square (double a){
@@ -32,7 +31,8 @@ public class Square extends Rectangle {
     
     @Override
     public String toString() {
-        return "Square{" + "a=" + a + ", area=" + area + '}';
+        //return "Square{" + "a=" + a + ", area=" + area + '}';
+        return super.toString() + String.format(" a = %.2f", a);
     }
 
     
