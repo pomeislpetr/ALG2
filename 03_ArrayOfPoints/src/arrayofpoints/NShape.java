@@ -1,6 +1,7 @@
 package arrayofpoints;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -17,13 +18,14 @@ public class NShape {
     }
 
     //TODO
-    public NShape (Point[] points){
-        throw new UnsupportedOperationException("Not supported yet.");
+    public NShape (Point[] points){    //netuším, proč to má být takhle
+        this.points.addAll(Arrays.asList(points));
     }
 
     //TODO
-    public NShape (ArrayList<Point> points){
-        throw new UnsupportedOperationException("Not supported yet.");
+    public NShape (ArrayList<Point> points){    //netuším, proč to má být takhle
+        ArrayList<Point> newPoints = (ArrayList<Point>)points.clone();
+        this.points.addAll(newPoints);
     }
 
     public void add(Point p){
