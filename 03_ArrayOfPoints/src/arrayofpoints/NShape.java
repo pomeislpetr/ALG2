@@ -21,7 +21,6 @@ public class NShape {
     public NShape (Point[] points){    //netuším, proč to má být takhle
         this.points.addAll(Arrays.asList(points));
     }
-
     //TODO
     public NShape (ArrayList<Point> points){    //netuším, proč to má být takhle
         ArrayList<Point> newPoints = (ArrayList<Point>)points.clone();
