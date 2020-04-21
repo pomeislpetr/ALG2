@@ -13,6 +13,8 @@ public class MyComparing {
     
     public static void main(String[] args) {
         Student[] students = Datasource.loadDataAsArray();
+        System.out.println(students[0].equals(students[1]));
+        
         print(students);
         System.out.println("");
         System.out.println("Sort By Number");
