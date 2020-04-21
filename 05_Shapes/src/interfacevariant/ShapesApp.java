@@ -52,9 +52,9 @@ public class ShapesApp {
                 case 8:
                     getObjectInfo();
                     break;
-                case 9:
-                    sortObjects();
-                    break;
+//                case 9:
+//                    sortObjects();
+//                    break;
                 default:
                     System.out.println("Chybna volba");
             }
@@ -151,21 +151,21 @@ public class ShapesApp {
 //                if (shape.computeArea() < )
 //            }
 //        }
-    
-     private static void sortObjects() {
-        boolean condition = true;
-        int index = 0;
-        while (condition){
-            condition = false;
-            index = 0;
-            for (int i = 0; i < (shapes.size() - 1); i++) {
-                if (shapes.get(i).computeArea() < shapes.get(i + 1).computeArea()){
-                    ShapeInterface temp = shapes.get(i);
-                    shapes.get(i) =shapes.get(i + 1);
-                    shapes.get(i + 1) = temp;
-                    condition = true;
-                }
-            }
-        }
-    }
+
+//    private static void sortObjects() {
+//        boolean condition = true;
+//        int index = 0;
+//        while (condition){
+//            condition = false;
+//            index = 0;
+//            for (int i = 0; i < (shapes.size() - 1); i++) {
+//                if (shapes.get(i).computeArea() < shapes.get(i + 1).computeArea()){
+//                    ShapeInterface temp = shapes.get(i);
+//                    shapes.get(i) = shapes.get(i + 1);
+//                    shapes.get(i + 1) = temp;
+//                    condition = true;
+//                }
+//            }
+//        }
+//    }
 }
