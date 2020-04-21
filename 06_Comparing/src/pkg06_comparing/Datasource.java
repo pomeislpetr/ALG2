@@ -14,8 +14,8 @@ import java.util.List;
  */
 public class Datasource {
     private static Student[] data = {
-        new Student("Jan", "Maly", 1234, 20),
-        new Student("Alice", "Velka", 1136, 19),
+        new Student("Jan", "Maly", 345, 20),
+        new Student("Alice", "Velka", 345, 19),
         new Student("Bob", "Pech", 1954, 18)};
 
     public static Student[] loadDataAsArray(){
