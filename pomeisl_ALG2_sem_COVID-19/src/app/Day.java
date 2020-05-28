@@ -18,6 +18,9 @@ class Day implements Comparable<Day>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public Day() {
+    }
+    
     public Day(int dateDay, int dateMonth, int dateYear, int infected, int cured, int deaths) {
         this.dateDay = dateDay;
         this.dateMonth = dateMonth;
@@ -53,7 +56,7 @@ class Day implements Comparable<Day>{
 
     @Override
     public String toString() {
-        return "Day{" + "dateDay=" + dateDay + ", dateMonth=" + dateMonth + ", dateYear=" + dateYear + ", infected=" + infected + ", cured=" + cured + ", deaths=" + deaths + '}';
+        return String.format("%-2d.%-2d.%-4d %-5d%-3d%-4d", dateDay, dateMonth, dateYear, infected, cured, deaths);
     }
     
 }

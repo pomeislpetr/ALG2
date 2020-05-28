@@ -41,6 +41,13 @@ public class Main {
                     }
                     break;
                 case(2) :
+                        System.out.println("Write day, month and year in format DD MM YYYY");
+                        int dateDay = sc.nextInt();
+                        int dateMonth = sc.nextInt();
+                        int dateYear = sc.nextInt();
+                        System.out.println("Data for your day are:");
+                        System.out.println("Date     Infected    Cured   Deseased");
+                        
                     break;
                 case(3) :
                     break;

@@ -35,6 +35,14 @@ public class Pandemic {
         }
     }
 
+    public Day findDay(int dateDay, int dateMonth, int dateYear){
+        for (Day day : pandemic) {
+            if (dateDay == day.getDateDay() && dateMonth == day.getDateMonth() && dateYear == day.getDateYear()){
+                return day;
+            }
+        }
+        return null;
+    }
     
     public void show() {
         for (Day day : pandemic) {
