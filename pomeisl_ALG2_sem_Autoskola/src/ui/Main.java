@@ -3,6 +3,7 @@ package ui;
 import app.Otazka;
 import app.Test;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,8 @@ import java.util.Scanner;
  */
 public class Main {
     public static Scanner sc = new Scanner(System.in);
-
+    ArrayList<Test> students = new ArrayList<>();
+    
     public static void main(String[] args) {
         
         int choice;
@@ -21,6 +23,10 @@ public class Main {
             switch(choice = sc.nextInt()){
                 case(1) :
                     Test test = new Test();
+                    System.out.print("Napis sve jmeno: ");
+                    test.setName(sc.nextLine());
+                    test.pressEnterKeyToContinue();
+                    test.setStartTime();
                     while(true){
                         try {
                             test.load(".\\src\\data\\Otazky.txt");
@@ -40,8 +46,12 @@ public class Main {
                         }
                         System.out.println("");
                     }
+                    test.setEndTime();
                     System.out.println("");
-                    System.out.println("Konec testu. Stisknete enter pro pokracovani");
+                    System.out.println("Konec testu.");
+                    System.out.println("Vase skore je " + test.getCorrectAnswers() + " spravnych odpovedi.");
+                    System.out.println("Test byl splnen za " + test.getDuration());
+                    System.out.println("stisknete enter pro navrat do menu");
                     test.pressEnterKeyToContinue();
                     break;
                 case(2) :

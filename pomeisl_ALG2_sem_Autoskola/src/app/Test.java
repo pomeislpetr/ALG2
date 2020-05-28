@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -14,7 +16,12 @@ import java.util.Scanner;
  */
 public class Test {
     private ArrayList<Otazka> test = new ArrayList<>();
+    private String name;
     private int CorrectAnswers = 0;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private LocalTime duration;
+    public static DateTimeFormatter durationFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
     
     public void load(String filePath) throws FileNotFoundException, IOException{
         File Otazky = new File(filePath);
@@ -38,6 +45,26 @@ public class Test {
         }
     }
 
+    public void setStartTime() {
+        this.startTime = LocalTime.now();
+    }
+
+    public void setEndTime() {
+        this.endTime = LocalTime.now();
+    }
+
+    public void duration(LocalTime startTime, LocalTime endTime){
+        this.duration = LocalTime.parse((endTime.toSecondOfDay() - startTime.toSecondOfDay()), durationFormat);
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
     public void setCorrectAnswers(int CorrectAnswers) {
         this.CorrectAnswers = CorrectAnswers;
     }
@@ -59,6 +86,10 @@ public class Test {
         Scanner sc = new Scanner(System.in);
         sc.nextLine();
 }
+
+    public LocalTime getDuration() {
+        return duration;
+    }
     
     public static void main(String[] args) throws IOException {
         Test test = new Test();
