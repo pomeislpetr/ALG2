@@ -22,18 +22,25 @@ import javax.mail.internet.MimeMultipart;
  * @author Pomeisl Petr
  */
 public class Email {
-    private static String filename = "test.txt";
+    private  String filename = "test.txt";
+    private  String to = "petr.pomeisl@email.cz";
+    private  String from = "ALG2.mail.2020@gmail.com";
+    private  String username = "alg2.mail.2020@gmail.com";
+    private  String password = "TULalg22020";
+    private  String subject = "Vysledky testu";
+    private  String bodyPart = "V priloze jsou vysledky testu";
+
+    public Email() {
+    }
     
-    
-    
-    public static void main(String[] args) {
+    public void sendResults() {
         // Recipient's email ID needs to be mentioned.
-        String to = "petr.pomeisl@email.cz";
+//        String to = "petr.pomeisl@email.cz";
 
         // Sender's email ID needs to be mentioned
-        String from = "ALG2.mail.2020@gmail.com";
-        final String username = "alg2.mail.2020@gmail.com";
-        final String password = "TULalg22020";
+//        String from = "ALG2.mail.2020@gmail.com";
+//        final String username = "alg2.mail.2020@gmail.com";
+//        final String password = "TULalg22020";
         
         // server odchozi posty - pro google k nalezeni na 
         String host = "smtp.gmail.com";
@@ -81,11 +88,11 @@ public class Email {
                InternetAddress.parse(to));
 	
 	   // Set Subject: header field
-	   message.setSubject("Testing Subject");
+	   message.setSubject(subject);
 	
 	   // Now set the actual message
            BodyPart messageBodyPart = new MimeBodyPart();
-	   messageBodyPart.setText("testovaci mail pro semestralku");
+	   messageBodyPart.setText(bodyPart);
            
            // Create a multipar message
             Multipart multipart = new MimeMultipart();
@@ -107,10 +114,70 @@ public class Email {
 	   // Send message
 	   Transport.send(message);
 
-	   System.out.println("Sent message successfully....");
+	   System.out.println("Message sent successfully....");
 
       } catch (MessagingException e) {
          throw new RuntimeException(e);
       }
     }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void setBodyPart(String bodyPart) {
+        this.bodyPart = bodyPart;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getBodyPart() {
+        return bodyPart;
+    }
+
+    
+    
+    
 }

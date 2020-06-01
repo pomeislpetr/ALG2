@@ -3,8 +3,8 @@ package ui;
 import app.Otazka;
 import app.Test;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
+import utils.Email;
 
 /**
  *
@@ -12,7 +12,6 @@ import java.util.Scanner;
  */
 public class Main {
     public static Scanner sc = new Scanner(System.in);
-    ArrayList<Test> students = new ArrayList<>();
     
     public static void main(String[] args) {
         
@@ -23,10 +22,14 @@ public class Main {
             switch(choice = sc.nextInt()){
                 case(1) :
                     Test test = new Test();
-                    System.out.print("Napis sve jmeno: ");
-                    test.setName(sc.nextLine());
-                    System.out.println("");
+                    System.out.print("Zadejte jméno a přijmení: ");
+                    test.setFirstName(sc.next());
+                    test.setLastName(sc.next());
+                    
+                    System.out.println("Stisknete enter pro zahajeni testu");
+                    test.pressEnterKeyToContinue();
                     test.setStartTime();
+                    
                     while(true){
                         try {
                             test.load(".\\src\\data\\Otazky.txt");
@@ -92,6 +95,29 @@ public class Main {
                 case(2) :
                     break;
                 case(3) :
+                        printEmailMenu();
+                        Email email = new Email();
+                        switch(sc.nextInt()){
+                            case(1) :
+                                email.sendResults();
+                                break;
+                            case(2) :
+                                System.out.print("Zadejte adresu prijemce (napr. prijemce@email.com): ");
+                                while (true){
+                                    email.setTo(sc.next());
+                                    if (email.getTo().matches("^(.+)@(.+)$")){
+                                        System.out.print("Zadejte nazev souboru s vysledky: ");
+                                        email.setFilename(sc.next());
+                                        System.out.println("");
+                                        email.sendResults();
+                                        break;
+                                    }
+                                    System.out.print("Neplatna adresa. Zadejte znovu: ");
+                                }
+                                break;
+                            case(0) :
+                                break;
+                        }
                     break;
                 case(0) :
                     run = false;
@@ -106,9 +132,23 @@ public class Main {
     private static void printMenu(){
         System.out.format("%nMain menu%n");
         System.out.println("(1) Spustit test");
-        System.out.println("(2) Porovnat výsledky");
+        System.out.println("(2) Setřídit výsledky");
         System.out.println("(3) Odeslat emailem");
         System.out.format("%n(0) Zavřít%n");
         System.out.format("%nVýběr: ");
     }
+    
+    private static void printEmailMenu(){
+        System.out.format("%nSending email%n");
+        System.out.println("(1) Odestal defaultni email");
+        System.out.println("(2) Odeslat vlastni email");
+        System.out.println("(0) Zrusit");
+        System.out.format("%nVýběr: ");
+    }
+    
+        public static void pressEnterKeyToContinue() {
+        Scanner cs = new Scanner(System.in);
+        sc.nextLine();
+    }
+    
 }

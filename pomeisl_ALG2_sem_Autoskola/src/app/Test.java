@@ -20,7 +20,8 @@ import utils.WriterTXT;
 public class Test implements Comparable<Test>{
 
     private ArrayList<Otazka> test = new ArrayList<>();
-    private String name;
+    private String firstName;
+    private String lastName;
     private int CorrectAnswers = 0;
     private LocalTime startTime;
     private LocalTime endTime;
@@ -109,8 +110,12 @@ public class Test implements Comparable<Test>{
     
     //gettery
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
    
     public LocalTime getStartTime() {
@@ -134,10 +139,14 @@ public class Test implements Comparable<Test>{
     }
 
     //settery
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
     public void setStartTime() {
         this.startTime = LocalTime.now();
     }
@@ -148,7 +157,7 @@ public class Test implements Comparable<Test>{
 
     @Override
     public String toString() {
-        return String.format("%-15s%-3d%-10s", this.getName(),
+        return String.format("%-10s%-10s%-3d%-10s", this.getLastName(), this.getFirstName(),
                 this.getCorrectAnswers(), this.getDuration());
     }
 
