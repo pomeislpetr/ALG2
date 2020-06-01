@@ -24,7 +24,7 @@ public class Main {
                 case(1) :
                     Test test = new Test();
                     System.out.print("Napis sve jmeno: ");
-                    test.setName(sc.next());
+                    test.setName(sc.nextLine());
                     System.out.println("");
                     test.setStartTime();
                     while(true){
