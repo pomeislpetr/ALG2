@@ -112,9 +112,11 @@ public class Main {
                         case (0) :
                             break;
                     }
-                    for (Test test1 : room) {
-                        System.out.println(test1.toString());
-                    }
+                    
+                    room.forEach((tests) -> {
+                        System.out.println(tests.toString());
+                    });
+                    
                     System.out.println("Prejete si ulozit vysledky?");
                     System.out.format("(1) ANO%n(2)NE%nVyber: ");
                     switch (sc.nextInt()){

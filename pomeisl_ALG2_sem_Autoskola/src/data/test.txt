@@ -13,3 +13,6 @@ pomeisl   pomeisl   4  00:00:04
 pomeisl   petr      4  00:00:04  
 pomeisl   petr      2  00:00:05  
 mala      alice     1  00:00:10  
+pomeisl   petr      2  00:00:06  
+mala      alice     1  00:00:12  
+dlouhy    david     4  00:00:40  
