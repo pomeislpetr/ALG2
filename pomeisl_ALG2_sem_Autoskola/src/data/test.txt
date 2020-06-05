@@ -11,3 +11,5 @@ null      null      4  00:00:06
 pomeisl   pomeisl   4  00:00:15  
 pomeisl   pomeisl   4  00:00:04  
 pomeisl   petr      4  00:00:04  
+pomeisl   petr      2  00:00:05  
+mala      alice     1  00:00:10  

@@ -3,8 +3,13 @@ package ui;
 import app.Otazka;
 import app.Test;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import utils.Email;
+import utils.testCompareCorrectAnswers;
 
 /**
  *
@@ -14,6 +19,7 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
+        ArrayList<Test> room = new ArrayList<>();
         
         int choice;
         boolean run = true;
@@ -60,6 +66,8 @@ public class Main {
                     test.duration(test.getStartTime(), test.getEndTime());
                     System.out.println("");
                     
+                    room.add(test);
+                    
                     System.out.println("Konec testu.");
                     System.out.println("Vase skore je " + test.getCorrectAnswers() + " spravnych odpovedi.");
                     System.out.println("Test byl splnen za " + test.getDuration());
@@ -93,30 +101,77 @@ public class Main {
                     test.pressEnterKeyToContinue();
                     break;
                 case(2) :
+                    printSortingMenu();
+                    switch (sc.nextInt()){
+                        case (1) :
+                            Collections.sort(room, new testCompareCorrectAnswers());
+                            break;
+                        case (2) :
+                            Collections.sort(room);
+                            break;
+                        case (0) :
+                            break;
+                    }
+                    for (Test test1 : room) {
+                        System.out.println(test1.toString());
+                    }
+                    System.out.println("Prejete si ulozit vysledky?");
+                    System.out.format("(1) ANO%n(2)NE%nVyber: ");
+                    switch (sc.nextInt()){
+                        case(1) :
+                            System.out.print("Zadejte nazev koncoveho souboru: ");
+                            while(true){
+                                try{
+                                    try{
+                                        String resultFilepath = ".\\src\\data\\" + sc.next();
+                                        for (Test test1 : room) {
+                                        test1.saveResults(resultFilepath);
+                                        }
+                                        System.out.format("%nData byla ulozena!%n");
+                                        break;
+                                    } catch (IOException ex) {
+                                        System.out.println("Chyba pri ukladani souboru!");
+                                    }
+                                } catch (IllegalArgumentException e){
+                                    System.out.print("Nepodporovany typ souboru! Zadejte znovu: ");
+                                }
+                            }
+                            break;
+                        case(2) :
+                            break;
+                    }
                     break;
                 case(3) :
                         printEmailMenu();
                         Email email = new Email();
-                        switch(sc.nextInt()){
-                            case(1) :
-                                email.sendResults();
-                                break;
-                            case(2) :
-                                System.out.print("Zadejte adresu prijemce (napr. prijemce@email.com): ");
-                                while (true){
-                                    email.setTo(sc.next());
-                                    if (email.getTo().matches("^(.+)@(.+)$")){
-                                        System.out.print("Zadejte nazev souboru s vysledky: ");
-                                        email.setFilename(sc.next());
-                                        System.out.println("");
-                                        email.sendResults();
-                                        break;
+                        try {
+                            switch(sc.nextInt()){
+                                case(1) :
+                                    email.sendResults();
+                                    break;
+                                case(2) :
+                                    System.out.print("Zadejte adresu prijemce (napr. prijemce@email.com): ");
+                                    while (true){
+                                        email.setTo(sc.next());
+                                        if (email.getTo().matches("^(.+)@(.+)$")){
+                                            System.out.print("Zadejte nazev souboru s vysledky: ");
+                                            email.setFilename(sc.next());
+                                            System.out.println("");
+                                            email.sendResults();
+                                            break;
+                                        }
+                                        System.out.print("Neplatna adresa. Zadejte znovu: ");
                                     }
-                                    System.out.print("Neplatna adresa. Zadejte znovu: ");
-                                }
-                                break;
-                            case(0) :
-                                break;
+                                    break;
+                                case(0) :
+                                    break;
+                            }
+                        } catch (AddressException e){
+                            System.out.println("Nastala chyba pri odesilani!");
+                        } catch (MessagingException e) {
+                            System.out.println("Nastala chyba pri odesilani!");
+                        } catch (NullPointerException e){
+                            System.out.println("Neplatny nazev souboru!");
                         }
                     break;
                 case(0) :
@@ -146,9 +201,17 @@ public class Main {
         System.out.format("%nVýběr: ");
     }
     
-        public static void pressEnterKeyToContinue() {
+    public static void pressEnterKeyToContinue() {
         Scanner cs = new Scanner(System.in);
         sc.nextLine();
     }
     
+    public static void printSortingMenu(){
+        System.out.format("%nSorting results%n");
+        System.out.println("(1) Srovnat podle počtu správných odpovědí");
+        System.out.println("(2) Srovnat podle času testu");
+        System.out.println("(0) Zrusit");
+        System.out.format("%nVýběr: ");
+    }
+        
 }

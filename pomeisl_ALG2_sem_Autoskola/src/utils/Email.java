@@ -11,6 +11,7 @@ import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -33,7 +34,7 @@ public class Email {
     public Email() {
     }
     
-    public void sendResults() {
+    public void sendResults() throws AddressException, MessagingException{
         // Recipient's email ID needs to be mentioned.
 //        String to = "petr.pomeisl@email.cz";
 
@@ -76,7 +77,7 @@ public class Email {
                     return new PasswordAuthentication(username, password);
                 }
             });
-        try {
+//        try {
 	   // Create a default MimeMessage object.
 	   Message message = new MimeMessage(session);
 	
@@ -116,9 +117,7 @@ public class Email {
 
 	   System.out.println("Message sent successfully....");
 
-      } catch (MessagingException e) {
-         throw new RuntimeException(e);
-      }
+//      }
     }
 
     public void setFilename(String filename) {

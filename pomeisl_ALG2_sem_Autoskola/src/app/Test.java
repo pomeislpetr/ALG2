@@ -163,7 +163,7 @@ public class Test implements Comparable<Test>{
 
     @Override
     public int compareTo(Test o) {
-        return this.getCorrectAnswers() - o.getCorrectAnswers();
+        return this.getDuration().getNano() - o.getDuration().getNano();
     }
     
     //test
