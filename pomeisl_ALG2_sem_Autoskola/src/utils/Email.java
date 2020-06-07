@@ -19,7 +19,7 @@ import javax.mail.internet.MimeMultipart;
 
 
 /**
- *
+ * Třída pro odesílání emailů.
  * @author Pomeisl Petr
  */
 public class Email {
@@ -34,6 +34,11 @@ public class Email {
     public Email() {
     }
     
+    /**
+     * Odešle email s přílohou.
+     * @throws AddressException
+     * @throws MessagingException 
+     */
     public void sendResults() throws AddressException, MessagingException{
         // Recipient's email ID needs to be mentioned.
 //        String to = "petr.pomeisl@email.cz";

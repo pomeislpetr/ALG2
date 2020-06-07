@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,10 +13,18 @@ import java.io.PrintWriter;
  */
 public class WriterTXT extends Writer {
 
+    /**
+     * Uloží data do textového souboru.
+     * @param resultFilepath Název výstupního souboru
+     * @param room Sada uložených testů
+     * @throws IOException 
+     */
     @Override
-    public void saveResults(String resultFilepath, Test test) throws IOException {
-        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(resultFilepath, true)))) {
-            pw.println(test.toString());
+    public void saveResults(String resultFilepath, ArrayList<Test> room) throws IOException {
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(resultFilepath, false)))) {
+            for (Test test : room) {
+                pw.println(test.toString());
+            }
         }
     }
 

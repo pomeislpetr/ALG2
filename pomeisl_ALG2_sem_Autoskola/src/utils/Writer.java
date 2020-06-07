@@ -2,6 +2,7 @@ package utils;
 
 import app.Test;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -9,6 +10,12 @@ import java.io.IOException;
  */
 public abstract class Writer {
 
-    public abstract void saveResults(String resultFilepath, Test test) throws IOException;
+    /**
+     * Uloží data do binárního nebo textového souboru.
+     * @param resultFilepath Název výstupního souboru
+     * @param room Sada uložených testů
+     * @throws IOException 
+     */
+    public abstract void saveResults(String resultFilepath, ArrayList<Test> room) throws IOException;
 
 }

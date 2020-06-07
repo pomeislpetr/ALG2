@@ -13,7 +13,7 @@ import utils.WriterDAT;
 import utils.WriterTXT;
 
 /**
- *
+ * Třída reprezentující jednotlivé testy.
  * @author Pomeisl Petr
  */
 public class Test implements Comparable<Test>{
@@ -61,7 +61,7 @@ public class Test implements Comparable<Test>{
      * Zjisti, zda je uzivatelova odpoved spravna
      * @param answer odpoved nactena od uzivatele
      * @param o otazka, na kterou uzivatel odpovida
-     * @return 
+     * @return true pokud je odpověd správná
      */
     public boolean isCorrect(int answer, Otazka o) {
         boolean isCorrect = (answer == o.getSpravnaOdpoved());
@@ -87,7 +87,7 @@ public class Test implements Comparable<Test>{
      * @throws IOException
      * @throws IllegalArgumentException 
      */
-    public void saveResults(String resultFilepath) throws IOException, IllegalArgumentException{
+    public void saveResults(String resultFilepath, ArrayList<Test> room) throws IOException, IllegalArgumentException{
         Writer wr = null;
         if (resultFilepath.endsWith(".txt")) {
             wr = new WriterTXT();
@@ -96,7 +96,7 @@ public class Test implements Comparable<Test>{
         } else {
             throw new IllegalArgumentException("Nepodporovaný typ souboru!");
         }
-        wr.saveResults(resultFilepath, this);
+        wr.saveResults(resultFilepath, room);
     }
     
     //gettery
@@ -152,6 +152,11 @@ public class Test implements Comparable<Test>{
                 this.getCorrectAnswers(), this.getDuration());
     }
 
+    /**
+     * Porovná Duration objektů typu Test
+     * @param o Test, se kterým tento porovnávám.
+     * @return Integer reprezentující větší, menší, stejné
+     */
     @Override
     public int compareTo(Test o) {
         return this.getDuration().toSecondOfDay() - o.getDuration().toSecondOfDay();

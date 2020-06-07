@@ -12,7 +12,7 @@ import utils.Email;
 import utils.testCompareCorrectAnswers;
 
 /**
- *
+ * Hlavní třída programu
  * @author Pomeisl Petr
  */
 public class Main {
@@ -28,11 +28,12 @@ public class Main {
             switch(choice = isInt(sc)){
                 case(1) :
                     Test test = new Test();
+                    
                     System.out.print("Zadejte jméno a přijmení: ");
                     test.setFirstName(sc.next());
                     test.setLastName(sc.next());
                     
-                    System.out.println("Stisknete enter pro zahajeni testu");
+                    System.out.format("%nStisknete enter pro zahajeni testu%n");
                     pressEnterKeyToContinue();
                     test.setStartTime();
                     
@@ -73,30 +74,6 @@ public class Main {
                     System.out.println("Test byl splnen za " + test.getDuration());
                     System.out.println("");
                     
-                    System.out.println("Prejete si ulozit vysledky?");
-                    System.out.format("(1) ANO%n(2)NE%nVyber: ");
-                    switch (isInt(sc)){
-                        case(1) :
-                            System.out.print("Zadejte nazev koncoveho souboru: ");
-                            while(true){
-                                try{
-                                    try{
-                                        String resultFilepath = ".\\src\\data\\" + sc.next();
-                                        test.saveResults(resultFilepath);
-                                        System.out.format("%nData byla ulozena!%n");
-                                        break;
-                                    } catch (IOException ex) {
-                                        System.out.println("Chyba pri ukladani souboru!");
-                                    }
-                                } catch (IllegalArgumentException e){
-                                    System.out.print("Nepodporovany typ souboru! Zadejte znovu: ");
-                                }
-                            }
-                            break;
-                        case(2) :
-                            break;
-                    }
-                    
                     System.out.println("stisknete enter pro navrat do menu");
                     pressEnterKeyToContinue();
                     break;
@@ -127,7 +104,7 @@ public class Main {
                                     try{
                                         String resultFilepath = ".\\src\\data\\" + sc.next();
                                         for (Test test1 : room) {
-                                        test1.saveResults(resultFilepath);
+                                        test1.saveResults(resultFilepath, room);
                                         }
                                         System.out.format("%nData byla ulozena!%n");
                                         break;
@@ -195,12 +172,15 @@ public class Main {
     private static void printMenu(){
         System.out.format("%nMain menu%n");
         System.out.println("(1) Spustit test");
-        System.out.println("(2) Setřídit výsledky");
+        System.out.println("(2) Setřídit a uložit výsledky");
         System.out.println("(3) Odeslat emailem");
         System.out.format("%n(0) Zavřít%n");
         System.out.format("%nVýběr: ");
     }
     
+    /**
+     * Vytiskne menu pro odesilani emailu na konzoli.
+     */
     private static void printEmailMenu(){
         System.out.format("%nSending email%n");
         System.out.println("(1) Odestal defaultni email");
@@ -209,6 +189,9 @@ public class Main {
         System.out.format("%nVýběr: ");
     }
     
+    /**
+     * Vytiskne menu pro třídění a ukládání na konzoli.
+     */
     private static void printSortingMenu(){
         System.out.format("%nSorting results%n");
         System.out.println("(1) Srovnat podle počtu správných odpovědí");
@@ -217,6 +200,9 @@ public class Main {
         System.out.format("%nVýběr: ");
     }
     
+    /**
+     * Vytiskne menu pro ukončení programu na konzoli.
+     */
     private static void printQuitMenu(){
         System.out.format("%nJste si jistí? Všechna neuložená data budou ztracena!%n");
         System.out.println("(1) Ano");
@@ -224,18 +210,26 @@ public class Main {
         System.out.format("%nVýběr: ");
     }
     
+    /**
+     * Čeká na odezvu od uživatele.
+     */
     public static void pressEnterKeyToContinue() {
-        Scanner cs = new Scanner(System.in);
-        sc.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
       
-   public static int isInt(Scanner sc){
-       int choice;
-       while(!sc.hasNextInt()){
-        sc.next();
-       }
-       choice = sc.nextInt();
-       return choice;
-   }
+    /**
+     * Kontroluje, že je vstup typu Integer
+     * @param sc Scanner načítající od uživatele
+     * @return Vstup typu Integer
+     */
+    public static int isInt(Scanner sc){
+        int choice;
+        while(!sc.hasNextInt()){
+         sc.next();
+        }
+        choice = sc.nextInt();
+        return choice;
+    }
     
 }
