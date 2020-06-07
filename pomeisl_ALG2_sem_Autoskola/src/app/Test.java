@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import utils.Writer;
@@ -80,14 +79,6 @@ public class Test implements Comparable<Test>{
     public void duration(LocalTime startTime, LocalTime endTime) {
         this.duration = LocalTime.ofSecondOfDay((endTime.toSecondOfDay()
                 - startTime.toSecondOfDay()));
-    }
-
-    /**
-     * Ceka na odezvu od uzivatele (stisknuti tlacitka enter)
-     */
-    public void pressEnterKeyToContinue() {
-        Scanner sc = new Scanner(System.in);
-        sc.nextLine();
     }
     
     /**
@@ -166,11 +157,11 @@ public class Test implements Comparable<Test>{
         return this.getDuration().toSecondOfDay() - o.getDuration().toSecondOfDay();
     }
     
-    //test
-    public static void main(String[] args) throws IOException {
-        Test test = new Test();
-        test.load(".\\src\\data\\Otazky.txt");
-    }
+//    //test
+//    public static void main(String[] args) throws IOException {
+//        Test test = new Test();
+//        test.load(".\\src\\data\\Otazky.txt");
+//    }
 
     
 }

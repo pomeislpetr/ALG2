@@ -33,7 +33,7 @@ public class Main {
                     test.setLastName(sc.next());
                     
                     System.out.println("Stisknete enter pro zahajeni testu");
-                    test.pressEnterKeyToContinue();
+                    pressEnterKeyToContinue();
                     test.setStartTime();
                     
                     while(true){
@@ -98,7 +98,7 @@ public class Main {
                     }
                     
                     System.out.println("stisknete enter pro navrat do menu");
-                    test.pressEnterKeyToContinue();
+                    pressEnterKeyToContinue();
                     break;
                 case(2) :
                     printSortingMenu();
