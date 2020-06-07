@@ -25,7 +25,7 @@ public class Main {
         boolean run = true;
         while(run){
             printMenu();
-            switch(choice = sc.nextInt()){
+            switch(choice = isInt(sc)){
                 case(1) :
                     Test test = new Test();
                     System.out.print("Zadejte jméno a přijmení: ");
@@ -48,7 +48,7 @@ public class Main {
                         System.out.println(Otazka.toString());
                         System.out.print("Odpoved: ");
                         while (true){
-                            choice = sc.nextInt();
+                            choice = isInt(sc);
                             if (choice > 3 || choice < 1){
                                 System.out.print("Neplatna odpoved. Zadejte znovu: ");
                             } else {
@@ -75,7 +75,7 @@ public class Main {
                     
                     System.out.println("Prejete si ulozit vysledky?");
                     System.out.format("(1) ANO%n(2)NE%nVyber: ");
-                    switch (sc.nextInt()){
+                    switch (isInt(sc)){
                         case(1) :
                             System.out.print("Zadejte nazev koncoveho souboru: ");
                             while(true){
@@ -119,7 +119,7 @@ public class Main {
                     
                     System.out.println("Prejete si ulozit vysledky?");
                     System.out.format("(1) ANO%n(2)NE%nVyber: ");
-                    switch (sc.nextInt()){
+                    switch (isInt(sc)){
                         case(1) :
                             System.out.print("Zadejte nazev koncoveho souboru: ");
                             while(true){
@@ -147,7 +147,7 @@ public class Main {
                         printEmailMenu();
                         Email email = new Email();
                         try {
-                            switch(sc.nextInt()){
+                            switch(isInt(sc)){
                                 case(1) :
                                     email.sendResults();
                                     break;
@@ -177,8 +177,14 @@ public class Main {
                         }
                     break;
                 case(0) :
-                    run = false;
-                    break;
+                    printQuitMenu();
+                    switch(isInt(sc)){
+                        case 1 :
+                            run = false;
+                            break;
+                        case 0 :
+                            break;
+                    }
             }
         }
     }
@@ -203,17 +209,33 @@ public class Main {
         System.out.format("%nVýběr: ");
     }
     
-    public static void pressEnterKeyToContinue() {
-        Scanner cs = new Scanner(System.in);
-        sc.nextLine();
-    }
-    
-    public static void printSortingMenu(){
+    private static void printSortingMenu(){
         System.out.format("%nSorting results%n");
         System.out.println("(1) Srovnat podle počtu správných odpovědí");
         System.out.println("(2) Srovnat podle času testu");
         System.out.println("(0) Zrusit");
         System.out.format("%nVýběr: ");
     }
-        
+    
+    private static void printQuitMenu(){
+        System.out.format("%nJste si jistí? Všechna neuložená data budou ztracena!%n");
+        System.out.println("(1) Ano");
+        System.out.println("(0) Ne");
+        System.out.format("%nVýběr: ");
+    }
+    
+    public static void pressEnterKeyToContinue() {
+        Scanner cs = new Scanner(System.in);
+        sc.nextLine();
+    }
+      
+   public static int isInt(Scanner sc){
+       int choice;
+       while(!sc.hasNextInt()){
+        sc.next();
+       }
+       choice = sc.nextInt();
+       return choice;
+   }
+    
 }
