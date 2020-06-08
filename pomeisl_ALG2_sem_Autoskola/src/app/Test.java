@@ -28,6 +28,17 @@ public class Test implements Comparable<Test>{
     public static DateTimeFormatter durationFormat
             = DateTimeFormatter.ofPattern("HH:mm:ss");
 
+    public Test(String firstName, String lastName, String duration, int CorrectAnswers) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.duration = LocalTime.parse(duration, durationFormat);
+        this.CorrectAnswers = CorrectAnswers;
+    }
+
+    public Test() {
+    }
+
+    
     //metody
     /**
      * Nacte vstupni soubor do programu.

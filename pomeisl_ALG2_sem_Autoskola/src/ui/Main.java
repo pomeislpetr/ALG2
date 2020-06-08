@@ -20,6 +20,7 @@ public class Main {
     
     public static void main(String[] args) {
         ArrayList<Test> room = new ArrayList<>();
+        example(room);        
         
         int choice;
         boolean run = true;
@@ -51,7 +52,7 @@ public class Main {
                         while (true){
                             choice = isInt(sc);
                             if (choice > 3 || choice < 1){
-                                System.out.print("Neplatna odpoved. Zadejte znovu: ");
+                                System.out.print("Neplatna odpoved! Zadejte znovu: ");
                             } else {
                                 break;
                             }
@@ -226,10 +227,20 @@ public class Main {
     public static int isInt(Scanner sc){
         int choice;
         while(!sc.hasNextInt()){
-         sc.next();
+            System.out.print("Neplatna odpoved! Zadejte znovu: ");
+            sc.next();
         }
         choice = sc.nextInt();
         return choice;
+    }
+    
+    private static void example(ArrayList<Test> room){
+        Test a = new Test("David", "Testovany", "00:00:10", 6);
+        room.add(a);
+        Test b = new Test("Alice", "Nejedla", "00:00:14", 2);
+        room.add(b);
+        Test c = new Test("Veronika", "Zdrava", "00:00:11", 0);
+        room.add(c);
     }
     
 }
