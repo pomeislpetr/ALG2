@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import static ui.Main.isInt;
+import static ui.Main.sc;
 import utils.Writer;
 import utils.WriterDAT;
 import utils.WriterTXT;
@@ -16,7 +18,7 @@ import utils.WriterTXT;
  * Třída reprezentující jednotlivé testy.
  * @author Pomeisl Petr
  */
-public class Test implements Comparable<Test>{
+public class Test implements Comparable<Test>, TestInterface{
 
     private ArrayList<Otazka> test = new ArrayList<>();
     private String firstName;
@@ -46,6 +48,7 @@ public class Test implements Comparable<Test>{
      * @throws FileNotFoundException
      * @throws IOException 
      */
+    @Override
     public void load(String filePath) throws FileNotFoundException, IOException {
         File Otazky = new File(filePath);
         try (BufferedReader load = new BufferedReader(new FileReader(Otazky))) {
@@ -54,42 +57,58 @@ public class Test implements Comparable<Test>{
                 Otazka o = new Otazka();
                 String[] parts = line.split("[-]");
                 o.setOtazka(parts[0]);
-                ArrayList<String> Odpovedi = new ArrayList<>();
+                ArrayList<String> odpovedi = new ArrayList<>();
                 for (int i = 1; i < parts.length; i++) {
                     if (parts[i].equals("*")) {
                         o.setSpravnaOdpoved(i - 1);
                     } else {
-                        Odpovedi.add(parts[i]);
+                        odpovedi.add(parts[i]);
                     }
                 }
-                o.setOdpovedi(Odpovedi);
+                o.setOdpovedi(odpovedi);
                 test.add(o);
+            }
+        }
+        System.out.println("Soubor nacten!");
+    }
+    
+    /**
+     * Prochazi test otazku po otazce a zapisuje odpovedi
+     */
+    @Override
+    public void runTest(){
+        int choice;
+        for (Otazka otazka : test) {
+            if (otazka.getSpravnaOdpoved() != -1){
+                System.out.println(otazka.toString());
+                System.out.print("Odpoved: ");
+                while (true){
+                    choice = isInt(sc);
+                    if (choice > 3 || choice < 1){
+                        System.out.print("Neplatna odpoved! Zadejte znovu: ");
+                    } else {
+                        break;
+                    }
+                }
+
+                if (otazka.isCorrect(choice)) {
+                    System.out.println("Spravna odpoved!");
+                    CorrectAnswers++;
+                }else{
+                    System.out.println("Spatne! Spravna odpoved byla " + otazka.getSpravnaOdpoved());
+                }
+                System.out.println("");
             }
         }
     }
     
     /**
-     * Zjisti, zda je uzivatelova odpoved spravna
-     * @param answer odpoved nactena od uzivatele
-     * @param o otazka, na kterou uzivatel odpovida
-     * @return true pokud je odpověd správná
-     */
-    public boolean isCorrect(int answer, Otazka o) {
-        boolean isCorrect = (answer == o.getSpravnaOdpoved());
-        if (isCorrect) {
-            this.CorrectAnswers++;
-        }
-        return isCorrect;
-    }
-    
-    /**
      * vypocita cas, za jaky uzivatel splnil test
-     * @param startTime cas spusteni testu
-     * @param endTime cas ukonceni testu
      */
-    public void duration(LocalTime startTime, LocalTime endTime) {
-        this.duration = LocalTime.ofSecondOfDay((endTime.toSecondOfDay()
-                - startTime.toSecondOfDay()));
+    @Override
+    public void duration() {
+        this.duration = LocalTime.ofSecondOfDay((this.endTime.toSecondOfDay()
+                - this.startTime.toSecondOfDay()));
     }
     
     /**
@@ -98,6 +117,7 @@ public class Test implements Comparable<Test>{
      * @throws IOException
      * @throws IllegalArgumentException 
      */
+    @Override
     public void saveResults(String resultFilepath, ArrayList<Test> room) throws IOException, IllegalArgumentException{
         Writer wr = null;
         if (resultFilepath.endsWith(".txt")) {

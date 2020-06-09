@@ -1,0 +1,3 @@
+Zdrava    Veronika  0  00:00:11  
+Nejedla   Alice     2  00:00:14  
+Testovany David     6  00:00:10  

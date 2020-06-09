@@ -34,10 +34,6 @@ public class Main {
                     test.setFirstName(sc.next());
                     test.setLastName(sc.next());
                     
-                    System.out.format("%nStisknete enter pro zahajeni testu%n");
-                    pressEnterKeyToContinue();
-                    test.setStartTime();
-                    
                     while(true){
                         try {
                             test.load(".\\src\\data\\Otazky.txt");
@@ -46,26 +42,18 @@ public class Main {
                             System.out.println("Chyba pri nacitani souboru");
                         }
                     }
-                    for (Otazka Otazka : test.getTest()) {
-                        System.out.println(Otazka.toString());
-                        System.out.print("Odpoved: ");
-                        while (true){
-                            choice = isInt(sc);
-                            if (choice > 3 || choice < 1){
-                                System.out.print("Neplatna odpoved! Zadejte znovu: ");
-                            } else {
-                                break;
-                            }
-                        }
-                        if (test.isCorrect(choice, Otazka)) {
-                            System.out.println("Spravna odpoved!");
-                        }else{
-                            System.out.println("Spatne! Spravna odpoved byla " + Otazka.getSpravnaOdpoved());
-                        }
-                        System.out.println("");
-                    }
+                    
+                    System.out.format("%nStisknete enter pro zahajeni testu%n");
+                    pressEnterKeyToContinue();
+                    
+                    test.setStartTime();
+                    
+                    //vyplneni testu
+                    test.runTest();
+                    
                     test.setEndTime();
-                    test.duration(test.getStartTime(), test.getEndTime());
+                    
+                    test.duration();
                     System.out.println("");
                     
                     room.add(test);
